@@ -16,7 +16,21 @@ public class WinnerController {
 
             for (int i = 0; i < 3; i++) {
 
+                if (chec(fields, new Point(i, 0), new Point(i, 1), new Point(i, 2)))
+                    return fields.getFields(new Point(i, 0));
 
+            }
+
+            for (int i = 0; i < 3; i++) {
+
+                if (chec(fields, new Point(0, i), new Point(1, i), new Point(2, i)))
+                    return fields.getFields(new Point(0, i));
+
+                if (chec(fields, new Point(0, 0), new Point(1, 1), new Point(2, 2)))
+                    return fields.getFields(new Point(0, 0));
+
+                if (chec(fields, new Point(2, 0), new Point(1, 1), new Point(0, 2)))
+                    return fields.getFields(new Point(1, 1));
 
             }
 
@@ -43,11 +57,7 @@ public class WinnerController {
             e.printStackTrace();
         }
 
+        return false;
     }
 
-    private interface IPointGenerator {
-
-        Point next(final Point point);
-
-    }
 }
