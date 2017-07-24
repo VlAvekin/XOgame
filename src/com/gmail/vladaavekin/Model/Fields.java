@@ -11,12 +11,12 @@ public class Fields {
 
     private final int coordinateY;
 
-    private  Fields fields[][];
+    private  Figure figures[][];
 
-    public Fields(final int coordinateX, final int coordinateY) {
+    public Fields(int coordinateX, int coordinateY, Figure[][] figures) {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
-        fields = new Fields[coordinateX][coordinateY];
+        this.figures = figures;
     }
 
     public int getCoordinateX() {
@@ -27,27 +27,20 @@ public class Fields {
         return coordinateY;
     }
 
-    public Fields getFields(final Point point) throws InvalidPointException {
+    public Figure getFields(final Point point) throws InvalidPointException {
 
-        try (!checkPoint(point)) {
-            throw new InvalidPointException();
-        }
 
-        return fields[point.x][point.y];
+        return figures[point.x][point.y];
     }
 
-    public void setFields(final Point point, final Fields figure) throws InvalidPointException {
+    public void setFields(final Point point, final Figure figure) throws InvalidPointException {
 
-        try(!checkPoint(point)) {
-            throw new  InvalidPointException();
-        }
-        fields[point.x][point.y] = figure;
-
+        figures[point.x][point.y] = figure;
     }
 
     private boolean checkPoint(final Point point) {
 
-        return checkCoordinate(point.x, fields.length) && checkCoordinate(point.y, fields[point.x].length);
+        return checkCoordinate(point.x, figures.length) && checkCoordinate(point.y, figures[point.x].length);
 
     }
 
@@ -56,4 +49,5 @@ public class Fields {
         return coordinate >= MIN_COORDINATE && coordinate < maxCoordinate;
 
     }
+
 }
