@@ -1,23 +1,21 @@
 package com.gmail.vladaavekin.Model;
 
-
 public class Player {
 
     private final String Name;
 
-    private final int[] Player;
+    private final Figure figure;
 
-    public Player(final String name, final int[] player) {
+    public Player(final String name, final Figure figure) {
         Name = name;
-        Player = player;
+        this.figure = figure;
     }
 
     public String getName() {
         return Name;
     }
 
-    public int[] getPlayer() {
-        return Player;
+    public Figure getFigure() {
+        return figure;
     }
-
 }
