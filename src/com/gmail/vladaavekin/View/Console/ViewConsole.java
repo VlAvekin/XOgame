@@ -25,7 +25,7 @@ public class ViewConsole {
             printFor(fields, i);
 
             if (i <= fields.getCoordinateX() - 2) {
-                printSeparator();
+                printSeparator(game.getFields());
             }
 
         }
@@ -45,20 +45,22 @@ public class ViewConsole {
 
         for (int i = 0; i < fields.getCoordinateY(); i++) {
 
-            System.out.print(fields.getFields()[x][i] != null ? fields.getFields()[x][i] : " ");
-
+            System.out.print(fields.getFields()[x][i] != null ? fields.getFields()[x][i] : " ");
+            if (i == 0) System.out.print(" ");
             if (i < fields.getCoordinateY() - 1) {
-                System.out.print(" | ");
+                System.out.print(" ▌ ");
             }
 
         }
         System.out.println();
     }
 
-    public static void printSeparator(){
+    public static void printSeparator(final Fields fields){
 
-        System.out.print("~~~~~~~~~\n");
-
+        for (int i = 0; i <= fields.getCoordinateX() * 2; i++) {
+           System.out.print("▀");
+        }
+        System.out.print("\n");
     }
 
 }
