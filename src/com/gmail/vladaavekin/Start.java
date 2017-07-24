@@ -26,6 +26,11 @@ public class Start {
         final ViewConsole viewConsole = new ViewConsole();
         viewConsole.show(game);
 
+        while (viewConsole.mowe(game)) {
+
+            viewConsole.show(game);
+
+        }
 
 
     }

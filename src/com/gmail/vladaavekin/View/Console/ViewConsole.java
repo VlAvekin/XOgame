@@ -8,15 +8,20 @@ import java.util.Scanner;
 
 public class ViewConsole {
 
-
     public void show(Game game) {
 
         System.out.println("Game name: " + game.getNameGame());
         printField(game);
+        ascCoordinat();
 
     }
 
-    public static void printField(Game game) {
+    public boolean mowe(Game game){
+
+        return true;
+    }
+
+    public void printField(Game game) {
 
         final Fields fields = game.getFields();
 
@@ -45,10 +50,14 @@ public class ViewConsole {
 
         for (int i = 0; i < fields.getCoordinateY(); i++) {
 
-            System.out.print(fields.getFields()[x][i] != null ? fields.getFields()[x][i] : " ");
             if (i == 0) System.out.print(" ");
-            if (i < fields.getCoordinateY() - 1) {
-                System.out.print(" ▌ ");
+
+            if (i < fields.getCoordinateY() ) {
+                System.out.print(fields.getFields()[x][i] != null ? fields.getFields()[x][i] : " ");
+
+                if (i != fields.getCoordinateY() - 1) {
+                    System.out.print(" ▌ ");
+                }
             }
 
         }
