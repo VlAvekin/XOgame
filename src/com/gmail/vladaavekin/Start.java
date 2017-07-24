@@ -19,7 +19,7 @@ public class Start {
 
         final Player[] players = new Player[2];
         players[0] = new Player(name[0], Figure.X);
-        players[1] = new Player(name[1], Figure.Y);
+        players[1] = new Player(name[1], Figure.O);
 
         Game game = new Game(GameName, players, new Fields(3,3));
 
