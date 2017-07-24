@@ -13,10 +13,10 @@ public class Fields {
 
     private  Figure figures[][];
 
-    public Fields(int coordinateX, int coordinateY, Figure[][] figures) {
+    public Fields(int coordinateX, int coordinateY) {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
-        this.figures = figures;
+        figures = new Figure[coordinateX][coordinateY];
     }
 
     public int getCoordinateX() {
@@ -27,7 +27,7 @@ public class Fields {
         return coordinateY;
     }
 
-    public Figure getFields(final Point point) throws InvalidPointException {
+    public Figure getFigure(final Point point) throws InvalidPointException {
 
         if (!checkPoint(point)) {
             throw new InvalidPointException();
