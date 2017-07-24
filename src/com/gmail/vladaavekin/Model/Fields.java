@@ -1,7 +1,6 @@
 package com.gmail.vladaavekin.Model;
 
 import com.gmail.vladaavekin.Model.exceptions.InvalidPointException;
-
 import java.awt.*;
 
 public class Fields {
@@ -48,7 +47,7 @@ public class Fields {
 
     private boolean checkPoint(final Point point) {
 
-        return (checkCoordinate(point.x, fields.length) && checkCoordinate(point.y, fields[point.x].length));
+        return checkCoordinate(point.x, fields.length) && checkCoordinate(point.y, fields[point.x].length);
 
     }
 
