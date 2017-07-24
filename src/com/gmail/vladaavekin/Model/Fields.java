@@ -29,11 +29,18 @@ public class Fields {
 
     public Figure getFields(final Point point) throws InvalidPointException {
 
+        if (!checkPoint(point)) {
+            throw new InvalidPointException();
+        }
 
         return figures[point.x][point.y];
     }
 
     public void setFields(final Point point, final Figure figure) throws InvalidPointException {
+
+        if(!checkPoint(point)) {
+            throw new InvalidPointException();
+        }
 
         figures[point.x][point.y] = figure;
     }
