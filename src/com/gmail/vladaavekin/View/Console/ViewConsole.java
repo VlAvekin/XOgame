@@ -2,8 +2,11 @@ package com.gmail.vladaavekin.View.Console;
 
 
 import com.gmail.vladaavekin.Model.Fields;
+import com.gmail.vladaavekin.Model.Figure;
 import com.gmail.vladaavekin.Model.Game;
+import com.gmail.vladaavekin.Model.exceptions.InvalidPointException;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class ViewConsole {
@@ -48,14 +51,26 @@ public class ViewConsole {
 
     public static void printFor(final Fields fields, final int x) {
 
-        for (int i = 0; i < fields.getCoordinateY(); i++) {
+        for (int y = 0; y < fields.getCoordinateY(); y++) {
 
-            if (i == 0) System.out.print(" ");
+            if (y == 0) System.out.print(" ");
 
-            if (i < fields.getCoordinateY() ) {
-                System.out.print(fields.getFields()[x][i] != null ? fields.getFields()[x][i] : " ");
+            if (y < fields.getCoordinateY() ) {
 
-                if (i != fields.getCoordinateY() - 1) {
+                final Figure figure;
+
+                try {
+
+                    figure = fields.getFigure(new Point(x, y));
+
+                } catch (final InvalidPointException e){
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+
+                System.out.print(figure != null ? figure : " ");
+
+                if (y != fields.getCoordinateY() - 1) {
                     System.out.print(" ▌ ");
                 }
             }
