@@ -4,24 +4,71 @@ package com.gmail.vladaavekin.View.Console;
 import com.gmail.vladaavekin.Model.Fields;
 import com.gmail.vladaavekin.Model.Figure;
 import com.gmail.vladaavekin.Model.Game;
+import com.gmail.vladaavekin.Model.exceptions.AlreadyOccupiedException;
 import com.gmail.vladaavekin.Model.exceptions.InvalidPointException;
+import com.gmail.vladaavekin.Сontroller.CurrentMoveController;
+import com.gmail.vladaavekin.Сontroller.MoveController;
+import com.gmail.vladaavekin.Сontroller.WinnerController;
 
 import java.awt.*;
 import java.util.Scanner;
 
 public class ViewConsole {
 
+    CurrentMoveController currentMoveController = new CurrentMoveController();
+
+    MoveController moveController = new MoveController();
+
+    WinnerController winnerController = new WinnerController();
+
     public void show(Game game) {
 
         System.out.println("Game name: " + game.getNameGame());
         printField(game);
-        ascCoordinat();
 
     }
 
     public boolean mowe(Game game){
 
+        final Fields fields = game.getFields();
+        final Figure currentFigure = currentMoveController.currentMove(fields);
+
+        if (currentFigure == null) {
+
+            final Figure winner = winnerController.getWinner(fields);
+
+            if (winner == null) {
+
+                System.out.println("Now Winners!!!");
+                return false;
+
+            } else {
+                System.out.printf("Winners is %w:\n", winner);
+                return false;
+            }
+
+        }
+
+        System.out.format("Enter move point for: %s\n", currentFigure);
+
+        final Point point = ascPoint();
+
+        try {
+
+            moveController.applyFigure(fields, point, currentFigure);
+
+        } catch (InvalidPointException | AlreadyOccupiedException e){
+            e.printStackTrace();
+            System.out.println("Point is invalid!");
+        }
+
         return true;
+    }
+
+    public Point ascPoint () {
+
+        return new Point(ascCoordinat("X") - 1, ascCoordinat("O") - 1);
+
     }
 
     public void printField(Game game) {
@@ -40,12 +87,11 @@ public class ViewConsole {
 
     }
 
-    public int ascCoordinat() {
+    public int ascCoordinat(final String coordinatName) {
 
-        System.out.print("Input : ");
-        Scanner scanner = new Scanner(System.in);
-        int in = scanner.nextInt();
-        return in;
+        System.out.format("Input %n: ", coordinatName);
+        final Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
 
     }
 
