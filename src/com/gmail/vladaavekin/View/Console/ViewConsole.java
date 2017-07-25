@@ -11,15 +11,16 @@ import com.gmail.vladaavekin.Сontroller.MoveController;
 import com.gmail.vladaavekin.Сontroller.WinnerController;
 
 import java.awt.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ViewConsole {
 
-    CurrentMoveController currentMoveController = new CurrentMoveController();
+    private final CurrentMoveController currentMoveController = new CurrentMoveController();
 
-    MoveController moveController = new MoveController();
+    private final MoveController moveController = new MoveController();
 
-    WinnerController winnerController = new WinnerController();
+    private final WinnerController winnerController = new WinnerController();
 
     public void show(Game game) {
 
@@ -58,7 +59,7 @@ public class ViewConsole {
             moveController.applyFigure(fields, point, currentFigure);
 
         } catch (InvalidPointException | AlreadyOccupiedException e){
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Point is invalid!");
         }
 
@@ -89,9 +90,15 @@ public class ViewConsole {
 
     public int ascCoordinat(final String coordinatName) {
 
-        System.out.format("Input %n: ", coordinatName);
+        System.out.format("Input %b: ", coordinatName);
         final Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("FUUUC!!!");
+            return ascCoordinat(coordinatName);
+        }
 
     }
 
