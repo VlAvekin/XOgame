@@ -21,18 +21,17 @@ public class WinnerController {
 
             }
 
-            for (int i = 0; i < 3; i++) {
-
+            for (int i = 0; i < 3; i++)
                 if (chec(fields, new Point(0, i), new Point(1, i), new Point(2, i)))
                     return fields.getFigure(new Point(0, i));
 
-                if (chec(fields, new Point(0, 0), new Point(1, 1), new Point(2, 2)))
+            if (chec(fields, new Point(0, 0), new Point(1, 1), new Point(2, 2)))
                     return fields.getFigure(new Point(0, 0));
 
-                if (chec(fields, new Point(2, 0), new Point(1, 1), new Point(0, 2)))
+            if (chec(fields, new Point(2, 0), new Point(1, 1), new Point(0, 2)))
                     return fields.getFigure(new Point(1, 1));
 
-            }
+
 
         } catch (InvalidPointException e) {
             e.printStackTrace();
