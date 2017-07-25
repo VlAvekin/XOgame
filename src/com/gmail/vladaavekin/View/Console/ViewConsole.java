@@ -32,21 +32,20 @@ public class ViewConsole {
     public boolean mowe(Game game){
 
         final Fields fields = game.getFields();
+
+        final Figure winner = winnerController.getWinner(fields);
+
+        if (winner != null) {
+            System.out.printf("Winners is %s:\n", winner);
+            return false;
+        }
+
         final Figure currentFigure = currentMoveController.currentMove(fields);
 
         if (currentFigure == null) {
 
-            final Figure winner = winnerController.getWinner(fields);
-
-            if (winner == null) {
-
-                System.out.println("Now Winners!!!");
-                return false;
-
-            } else {
-                System.out.printf("Winners is %w:\n", winner);
-                return false;
-            }
+            System.out.println("Now Winners!!!");
+            return false;
 
         }
 

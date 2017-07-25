@@ -14,12 +14,10 @@ public class WinnerController {
 
         try {
 
-            for (int i = 0; i < 3; i++) {
-
+            for (int i = 0; i < 3; i++)
                 if (chec(fields, new Point(i, 0), new Point(i, 1), new Point(i, 2)))
                     return fields.getFigure(new Point(i, 0));
 
-            }
 
             for (int i = 0; i < 3; i++)
                 if (chec(fields, new Point(0, i), new Point(1, i), new Point(2, i)))
