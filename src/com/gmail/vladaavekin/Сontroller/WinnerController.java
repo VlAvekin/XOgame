@@ -46,7 +46,7 @@ public class WinnerController {
 
             if (fields.getFigure(p1) == null) return false;
 
-            if (fields.getFigure(p2) == fields.getFigure(p2) &&
+            if (fields.getFigure(p1) == fields.getFigure(p2) &&
                     fields.getFigure(p1) == fields.getFigure(p3))
                 return true;
 
